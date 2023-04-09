@@ -1,0 +1,17 @@
+{
+    "name": "79520/gb_php2",
+    "autoload": {
+        "psr-4": {
+            "Main\\Component\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "WildMrDeFold",
+            "email": "wildmrdefox@gmail.com"
+        }
+    ],
+    "require": {
+        "fakerphp/faker": "^1.21"
+    }
+}
