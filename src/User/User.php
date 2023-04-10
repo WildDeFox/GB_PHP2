@@ -6,13 +6,11 @@ class User
 {
   private string $firstName;
   private string $lastName;
-  private int $id;
 
-  public function __construct(string $firstName, string $lastName, int $id)
+  public function __construct(string $firstName, string $lastName)
   {
     $this->firstName = $firstName;
     $this->lastName = $lastName;
-    $this->id = $id;
   }
 
   public function __toString()
@@ -20,7 +18,13 @@ class User
     return $this->firstName . ' ' . $this->lastName;
   }
 
-  public function getId() {
-    return $this->id;
+  public function getFirstName(): string
+  {
+      return $this->firstName;
+  }
+
+  public function getLastName(): string
+  {
+      return $this->lastName;
   }
 }
