@@ -7,7 +7,7 @@ var_dump($connection);
 
 $userRepository = new \Main\Component\Repositories\SqliteUsersRepository($connection);
 
-$userRepository->save(new \Main\Component\User\User('Nikita', 'Kapurin'));
+$userRepository->save(new \Main\Component\User\User('Nikita', 'Kapurin', \Main\Component\UUID\UUID::random()));
 
 // Создаем объект подключения к SQLite
 
