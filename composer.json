@@ -15,6 +15,7 @@
         "fakerphp/faker": "^1.21",
       "ext-pdo": "*",
         "symfony/polyfill-uuid": "^1.27",
-      "ext-mongodb": "*"
+      "ext-mongodb": "*",
+      "ext-http": "*"
     }
 }
