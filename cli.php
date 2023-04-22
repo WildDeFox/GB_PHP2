@@ -1,7 +1,9 @@
 <?php
 
 
+use Main\Component\Blog\Exceptions\UserNotFoundException;
 use Main\Component\Blog\Post;
+use Main\Component\Blog\Repositories\InMemoryUsersRepository;
 use Main\Component\Blog\User;
 use Main\Component\Person\Name;
 use Main\Component\Person\Person;
@@ -9,19 +11,19 @@ use Main\Component\Person\Person;
 
 include __DIR__ . "/vendor/autoload.php";
 
-$name = new Name('Nikita', 'Kapurin');
-$user = new User(1, $name, 'Nikita1');
-$person = new Person($name, new DateTimeImmutable());
+$name1 = new Name('Иван', 'Таранов');
+$user1 = new User(1, $name1, 'User');
+$name2 = new Name('Никита', 'Капурин');
+$user2 = new User(2, $name2, 'User2');
+$userRepository = new InMemoryUsersRepository();
 
-echo $user;
-echo $person;
+try {
+    $userRepository->save($user1);
+    $userRepository->save($user2);
 
-$post = new Post(
-    1,
-    new Person(
-        new Name('Иван', 'Никитин'),
-        new DateTimeImmutable()
-    ),
-    'Всем привет' . PHP_EOL
-);
-echo $post;
+    echo $userRepository->get(1);
+    echo $userRepository->get(2);
+} catch (UserNotFoundException | Exception $e) {
+    echo $e-getMessage();
+}
+
