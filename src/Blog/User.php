@@ -6,31 +6,31 @@ use Main\Component\Person\Name;
 
 class User
 {
-    private int $id;
+    private UUID $uuid;
     private Name $username; // Имя и фамилия
     private string $login;
 
-    public function __construct(int $id, Name $username, string $login)
+    public function __construct(UUID $uuid, Name $username, string $login)
     {
-        $this->id = $id;
+        $this->uuid = $uuid;
         $this->username = $username;
         $this->login = $login;
     }
 
     /**
-     * @return int
+     * @return UUID
      */
-    public function getId(): int
+    public function getUuid(): UUID
     {
-        return $this->id;
+        return $this->uuid;
     }
 
     /**
-     * @param int $id
+     * @param UUID $uuid
      */
-    public function setId(int $id): void
+    public function setUuid(UUID $uuid): void
     {
-        $this->id = $id;
+        $this->uuid = $uuid;
     }
 
     /**
@@ -67,6 +67,6 @@ class User
 
     public function __toString(): string
     {
-        return "Юзер $this->id с именем $this->username и логином $this->login." . PHP_EOL;
+        return "Юзер $this->uuid с именем $this->username и логином $this->login." . PHP_EOL;
     }
 }
