@@ -1,6 +1,6 @@
 <?php
 
-namespace Main\Component\Blog\Repositories;
+namespace Main\Component\Blog\Repositories\UserRepository;
 
 use Main\Component\Blog\Exceptions\UserNotFoundException;
 use Main\Component\Blog\User;
