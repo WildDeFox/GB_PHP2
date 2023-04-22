@@ -3,18 +3,17 @@
 namespace Main\Component\Blog;
 
 
-use Main\Component\Person\Person;
 
 class Post
 {
     private int $id;
-    private Person $author;
+    private User $user;
     private string $text;
 
-    public function __construct(int $id, Person $author, string $text)
+    public function __construct(int $id, User $user, string $text)
     {
         $this->id = $id;
-        $this->author = $author;
+        $this->user = $user;
         $this->text = $text;
     }
 
@@ -35,19 +34,19 @@ class Post
     }
 
     /**
-     * @return Person
+     * @return User
      */
-    public function getAuthor(): Person
+    public function getUser(): User
     {
-        return $this->author;
+        return $this->user;
     }
 
     /**
-     * @param Person $author
+     * @param User $user
      */
-    public function setAuthor(Person $author): void
+    public function setAuthor(User $user): void
     {
-        $this->author = $author;
+        $this->user = $user;
     }
 
     /**
@@ -69,7 +68,7 @@ class Post
 
     public function __toString()
     {
-        return $this->author . $this->id . ' пишет: ' . $this->text ;
+        return $this->user . $this->id . ' пишет: ' . $this->text ;
     }
 
 }

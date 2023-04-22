@@ -7,7 +7,7 @@ use Main\Component\Person\Name;
 class User
 {
     private int $id;
-    private Name $username;
+    private Name $username; // Имя и фамилия
     private string $login;
 
     public function __construct(int $id, Name $username, string $login)
