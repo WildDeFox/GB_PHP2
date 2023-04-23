@@ -7,14 +7,14 @@ use Main\Component\Person\Name;
 class User
 {
     private UUID $uuid;
-    private Name $username; // Имя и фамилия
-    private string $login;
+    private Name $name; // Имя и фамилия
+    private string $username;
 
-    public function __construct(UUID $uuid, Name $username, string $login)
+    public function __construct(UUID $uuid, Name $name, string $username)
     {
         $this->uuid = $uuid;
+        $this->name = $name;
         $this->username = $username;
-        $this->login = $login;
     }
 
     /**
@@ -36,37 +36,38 @@ class User
     /**
      * @return Name
      */
-    public function getUsername(): Name
+    public function getName(): Name
     {
-        return $this->username;
+        return $this->name;
     }
 
     /**
-     * @param Name $username
+     * @param Name $name
      */
-    public function setUsername(Name $username): void
+    public function setName(Name $name): void
     {
-        $this->username = $username;
+        $this->name = $name;
     }
 
     /**
      * @return string
      */
-    public function getLogin(): string
+    public function getUsername(): string
     {
-        return $this->login;
+        return $this->username;
     }
 
     /**
-     * @param string $login
+     * @param string $username
      */
-    public function setLogin(string $login): void
+    public function setUsername(string $username): void
     {
-        $this->login = $login;
+        $this->username = $username;
     }
+
 
     public function __toString(): string
     {
-        return "Юзер $this->uuid с именем $this->username и логином $this->login." . PHP_EOL;
+        return "Юзер $this->uuid с именем $this->name и логином $this->username." . PHP_EOL;
     }
 }
