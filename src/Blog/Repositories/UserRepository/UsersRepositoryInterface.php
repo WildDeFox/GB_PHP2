@@ -1,6 +1,5 @@
 <?php
-
-namespace Main\Component\Blog\Repositories\UsersRepository;
+namespace Main\Component\Blog\Repositories\UserRepository;
 
 use Main\Component\Blog\User;
 use Main\Component\Blog\UUID;

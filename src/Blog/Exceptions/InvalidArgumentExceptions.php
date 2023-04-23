@@ -2,9 +2,7 @@
 
 namespace Main\Component\Blog\Exceptions;
 
-use Exception;
-
-class AppException extends Exception
+class InvalidArgumentExceptions extends AppExceptions
 {
 
 }

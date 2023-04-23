@@ -2,7 +2,8 @@
 
 namespace Main\Component\Blog\Exceptions;
 
-class CommandException extends AppException
+class CommandException extends AppExceptions
 {
+
 
 }

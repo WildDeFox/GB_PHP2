@@ -2,34 +2,37 @@
 
 namespace Main\Component\Blog;
 
-use http\Exception\InvalidArgumentException;
+use Main\Component\Blog\Exceptions\InvalidArgumentExceptions;
 
 class UUID
 {
-    // Внутри объекта мы храним UUID как строку
     private string $uuidString;
 
-    public function __construct(string $uuidString) {
+    /**
+     * @throws InvalidArgumentExceptions
+     */
+    public function __construct(string $uuidString)
+    {
         $this->uuidString = $uuidString;
 
-        // Если строка не подходит по формату -
-        // бросаем исключение InvalidArgumentException
         if (!uuid_is_valid($uuidString)) {
-            throw new InvalidArgumentException(
+            throw new InvalidArgumentExceptions(
                 "Malformed UUID: $this->uuidString"
             );
         }
     }
 
-    // А так мы можем сгенерировать новый случайный UUID
-    // и получить его в качестве объекта нашего класса
-    public static function random():self
+    /**
+     * @throws InvalidArgumentExceptions
+     */
+    public static function random(): self
     {
         return new self(uuid_create(UUID_TYPE_RANDOM));
     }
 
-    public function __toString():string
+    public function __toString(): string
     {
         return $this->uuidString;
     }
+
 }

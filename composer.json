@@ -1,5 +1,6 @@
 {
-    "name": "79520/gb_php2",
+    "name": "geekbrains/leveltwo",
+    "description": "PHP test project",
     "autoload": {
         "psr-4": {
             "Main\\Component\\": "src/"
@@ -13,9 +14,7 @@
     ],
     "require": {
         "fakerphp/faker": "^1.21",
-      "ext-pdo": "*",
-        "symfony/polyfill-uuid": "^1.27",
-      "ext-mongodb": "*",
-      "ext-http": "*"
+        "ext-pdo": "*",
+        "symfony/polyfill-uuid": "^1.27"
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Main\Component\Blog\Exceptions;
 
-class ArgumentsException extends AppException
+class ArgumentsException extends AppExceptions
 {
 
 }

@@ -1,5 +1,8 @@
 <?php
+
 namespace Main\Component\Blog;
+
+
 
 class Post
 {
@@ -14,39 +17,58 @@ class Post
         $this->text = $text;
     }
 
-    public function id(): int
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
+    /**
+     * @param int $id
+     */
     public function setId(int $id): void
     {
         $this->id = $id;
     }
 
+    /**
+     * @return User
+     */
     public function getUser(): User
     {
         return $this->user;
     }
 
-    public function setUser(User $user): void
+    /**
+     * @param User $user
+     */
+    public function setAuthor(User $user): void
     {
         $this->user = $user;
     }
 
+    /**
+     * @return string
+     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    public function setText(string $text): Post
+    /**
+     * @param string $text
+     */
+    public function setText(string $text): void
     {
         $this->text = $text;
-        return $this;
     }
+
 
     public function __toString()
     {
-        return $this->user . ' пишет: ' . $this->text . PHP_EOL;
+        return $this->user . $this->id . ' пишет: ' . $this->text ;
     }
+
 }

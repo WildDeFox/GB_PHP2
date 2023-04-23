@@ -2,7 +2,7 @@
 
 namespace Main\Component\Blog;
 
-class Comment
+class Comments
 {
     private int $id;
     private User $user;
@@ -17,47 +17,74 @@ class Comment
         $this->text = $text;
     }
 
+    /**
+     * @return int
+     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function setId($id): void
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
+    /**
+     * @return User
+     */
     public function getUser(): User
     {
         return $this->user;
     }
 
+    /**
+     * @param User $user
+     */
     public function setUser(User $user): void
     {
         $this->user = $user;
     }
 
+    /**
+     * @return Post
+     */
     public function getPost(): Post
     {
         return $this->post;
     }
 
+    /**
+     * @param Post $post
+     */
     public function setPost(Post $post): void
     {
         $this->post = $post;
     }
 
+    /**
+     * @return string
+     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    public function setText($text): void
+    /**
+     * @param string $text
+     */
+    public function setText(string $text): void
     {
         $this->text = $text;
     }
 
-    public function __toString() {
-        return $this->user . " пишет Коммент " . $this->text;
+    public function __toString(): string
+    {
+        return $this->user . ' пишет Коммент' . $this->text;
     }
+
+
 }
