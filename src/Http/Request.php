@@ -22,6 +22,21 @@ class Request
     /**
      * @throws HttpException
      */
+    public function method(): string
+    {
+        // В суперглобальном массиве $_SERVER
+        // HTTP-метод хранится под ключом REQUEST_METHOD
+        if (!array_key_exists('REQUEST_METHOD', $this->server)) {
+            // Если мы не можем получить метод - бросаем исключение
+            throw new HttpException('Cannot get method from the request');
+        }
+        return $this->server['REQUEST_METHOD'];
+    }
+
+
+    /**
+     * @throws HttpException
+     */
     public function jsonBody(): array
     {
         try {
