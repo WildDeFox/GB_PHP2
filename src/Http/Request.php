@@ -2,17 +2,61 @@
 
 namespace Main\Component\Http;
 
+
 use Main\Component\Blog\Exceptions\HttpException;
+use Main\Component\Blog\Exceptions\JsonException;
 
 class Request
 {
     private array $get; // аргумент, соответствующий суперглобальной переменной $_GET
     private array $server; // аргумент сооьветсвующий суперглобальной переменной $_SERVER
+    private string $body;
 
-    public function __construct(array $get, array $server)
+    public function __construct(array $get, array $server, string $body)
     {
         $this->get = $get;
         $this->server = $server;
+        $this->body = $body;
+    }
+
+    /**
+     * @throws HttpException
+     */
+    public function jsonBody(): array
+    {
+        try {
+            // Пытаемся декодировать json
+            $data = json_decode(
+                $this->body,
+                // Декодируем в ассоциативный массив
+                associative: true,
+                // Бросаем исключение при ошибке
+                flags: JSON_THROW_ON_ERROR
+            );
+        } catch (JsonException) {
+            throw new HttpException("Cannot decode json body");
+        }
+        if (!is_array($data)) {
+            throw new HttpException("Not an array/object in json body");
+        }
+        return $data;
+    }
+
+    // Метод для получения отдельного поля
+    // из json-форматированного тела запроса
+    /**
+     * @throws HttpException
+     */
+    public function jsonBodyField(string $field): mixed
+    {
+        $data = $this->jsonBody();
+        if (!array_key_exists($field, $data)) {
+            throw new HttpException("No such field: $field");
+        }
+        if (empty($data[$field])) {
+            throw new HttpException("Empty field: $field");
+        }
+        return $data[$field];
     }
 
     // Метод для получения пути запроса
