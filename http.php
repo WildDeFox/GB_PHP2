@@ -1,6 +1,7 @@
 <?php
 
 use Main\Component\Blog\Exceptions\AppExceptions;
+use Main\Component\Http\Actions\Likes\CreatePostLike;
 use Main\Component\Http\Actions\Posts\CreatePost;
 use Main\Component\Http\Actions\Posts\DeletePost;
 use Main\Component\Http\Actions\Users\CreateUser;
@@ -37,6 +38,7 @@ $routes = [
     'POST' => [
         '/users/create' => CreateUser::class,
         '/posts/create' => CreatePost::class,
+        '/post-likes/create' => CreatePostLike::class
     ],
     'DELETE' => [
         '/posts' => DeletePost::class,
