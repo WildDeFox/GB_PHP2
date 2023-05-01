@@ -1,0 +1,4 @@
+[2023-05-01T07:17:49.131980+00:00] blog.INFO: Create user command started [] []
+[2023-05-01T07:17:49.173320+00:00] blog.INFO: User created: nikita [] []
+[2023-05-01T07:21:20.919623+00:00] blog.INFO: Create user command started [] []
+[2023-05-01T07:21:20.930785+00:00] blog.ERROR: User already exists: nikita {"exception":"[object] (Main\\Component\\Blog\\Exceptions\\CommandException(code: 0): User already exists: nikita at C:\\OSPanel\\domains\\GB_PHP2\\src\\Blog\\Command\\CreateUserCommand.php:37)"} []
