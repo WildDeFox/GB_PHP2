@@ -10,14 +10,17 @@ use Main\Component\Blog\Repositories\UserRepository\UsersRepositoryInterface;
 use Main\Component\Blog\User;
 use Main\Component\Blog\UUID;
 use Main\Component\Person\Name;
+use Psr\Log\LoggerInterface;
 
 class CreateUserCommand
 {
     private UsersRepositoryInterface $usersRepository;
+    private LoggerInterface $logger;
 
-    public function __construct(UsersRepositoryInterface $usersRepository)
+    public function __construct(UsersRepositoryInterface $usersRepository, LoggerInterface $logger)
     {
         $this->usersRepository = $usersRepository;
+        $this->logger = $logger;
     }
 
     /**
@@ -27,6 +30,7 @@ class CreateUserCommand
      */
     public function handle(Arguments $arguments): void
     {
+        $this->logger->info("Create user command started");
         $username = $arguments->get('username');
 
         if ($this->userExists($username)) {
@@ -41,6 +45,7 @@ class CreateUserCommand
             ),
             $username,
         ));
+        $this->logger->info("User created: $username");
     }
 
     private function userExists(string $username): bool
