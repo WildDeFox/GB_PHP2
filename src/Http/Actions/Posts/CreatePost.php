@@ -10,6 +10,7 @@ use Main\Component\Blog\Repositories\PostsRepository\PostsRepositoryInterface;
 use Main\Component\Blog\Repositories\UserRepository\UsersRepositoryInterface;
 use Main\Component\Blog\UUID;
 use Main\Component\Http\Actions\ActionInterface;
+use Main\Component\Http\Auth\IdentificationInterface;
 use Main\Component\Http\ErrorResponse;
 use Main\Component\Http\Request;
 use Main\Component\Http\Response;
@@ -17,28 +18,21 @@ use Main\Component\Http\SuccessfulResponse;
 
 class CreatePost implements ActionInterface
 {
-    private UsersRepositoryInterface $usersRepository;
+    private IdentificationInterface $identification;
     private PostsRepositoryInterface $postsRepository;
 
-    public function __construct(UsersRepositoryInterface $usersRepository, PostsRepositoryInterface $postsRepository)
+    public function __construct(IdentificationInterface $identification, PostsRepositoryInterface $postsRepository)
     {
-        $this->usersRepository = $usersRepository;
+        $this->identification = $identification;
         $this->postsRepository = $postsRepository;
     }
 
+    /**
+     * @throws InvalidArgumentExceptions
+     */
     public function handle(Request $request): Response
     {
-        try {
-            $authorUuid = new UUID($request->jsonBodyField('author_uuid'));
-        } catch (HttpException | InvalidArgumentExceptions $exception) {
-            return new ErrorResponse($exception->getMessage());
-        }
-
-        try {
-            $user = $this->usersRepository->get($authorUuid);
-        } catch (UserNotFoundException $exception) {
-            return new ErrorResponse($exception->getMessage());
-        }
+        $user = $this->identification->user($request);
 
         $newPostUuid = UUID::random();
 
