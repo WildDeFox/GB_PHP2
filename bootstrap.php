@@ -7,6 +7,9 @@ use Main\Component\Blog\Repositories\PostsRepository\PostsRepositoryInterface;
 use Main\Component\Blog\Repositories\PostsRepository\SqlitePostsRepository;
 use Main\Component\Blog\Repositories\UserRepository\SqliteUsersRepository;
 use Main\Component\Blog\Repositories\UserRepository\UsersRepositoryInterface;
+use Main\Component\Http\Auth\IdentificationInterface;
+use Main\Component\Http\Auth\JsonBodyUsernameIdentification;
+use Main\Component\Http\Auth\JsonBodyUuidIdentification;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
@@ -30,6 +33,11 @@ $container->bind(
 $container->bind(
     LikesRepositoryInterface::class,
     SqliteLikesRepository::class
+);
+
+$container->bind(
+    IdentificationInterface::class,
+    JsonBodyUsernameIdentification::class
 );
 
 $container->bind(
